@@ -1,0 +1,48 @@
+[project]
+name = "qdmouse4m-benchmark"
+version = "0.1.0"
+description = "Benchmark utilities for QDMouse4M pose-estimation experiments."
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+license = {text = "MIT"}
+dependencies = [
+  "numpy>=1.24",
+  "matplotlib>=3.7",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "scikit-learn>=1.3",
+  "opencv-python-headless>=4.8",
+  "pillow>=10.0",
+  "pyyaml>=6.0",
+  "tqdm>=4.66",
+  "omegaconf>=2.3",
+  "toml>=0.10",
+]
+
+[project.optional-dependencies]
+sleap = [
+  "sleap-io>=0.6",
+]
+lp3d = [
+  "lightning>=2.2",
+  # Install lightning-pose separately in CUDA-enabled Linux environments when
+  # running LP3D; its NVIDIA DALI dependency is platform-specific.
+]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.4",
+]
+
+[project.scripts]
+qdmouse4m = "qdmouse4m_benchmark.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/qdmouse4m_benchmark"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

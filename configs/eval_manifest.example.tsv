@@ -1,0 +1,4 @@
+model_kind	model_name	model_dir	eval_root	split	out_dir
+lp3d	lp3d_train_0500_dinov3_seed0	outputs/lp3d/train_0500/dinov3/seed0	evaluation_sets/refonly_pose_k50_in_session_v1_valid3dfix_20260503	test_100000_stratified	outputs/eval/in/lp3d/train_0500/dinov3/seed0
+sleap	sleap_train_0500_unet_seed0	outputs/sleap/train_0500/unet/seed0/checkpoints	evaluation_sets/refonly_pose_k50_in_session_v1_valid3dfix_20260503	test_100000_stratified	outputs/eval/in/sleap/train_0500/unet/seed0
+
