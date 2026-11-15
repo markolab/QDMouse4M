@@ -1,0 +1,118 @@
+name: nst50_ds2_ld15_k1e06_seed1_seed1
+description: >
+  Public-release Keypoint-MoSeq inference configuration for the fixed-validity
+  27-session QDMouse4M release trajectories.
+
+dataset:
+  release_root_env: QDMOUSE4M_RELEASE_ROOT
+  expected_sessions: 27
+  mask_invalid_3d: true
+  mask_invalid_jump_timepoint: true
+  fps: 40.724
+  coordinate_units: mm
+  notes:
+    - Trust labels/keypoint_annotations.npz:valid_3d when deciding whether a 3D
+      keypoint should be modeled.
+    - Coordinates are read directly from keypoints_3d; no extra triangulation or
+      spike cleaning is applied during KPMS inference prep.
+
+bodyparts:
+  - ear_L
+  - ear_R
+  - back_top
+  - back_middle
+  - back_bottom
+  - tail_base
+  - tail_middle
+  - tail_tip
+  - forepaw_L
+  - forepaw_R
+  - hindpaw_L
+  - hindpaw_R
+
+skeleton:
+  - [ear_L, ear_R]
+  - [ear_L, back_top]
+  - [ear_R, back_top]
+  - [back_top, back_middle]
+  - [back_middle, back_bottom]
+  - [back_bottom, tail_base]
+  - [tail_base, tail_middle]
+  - [tail_middle, tail_tip]
+  - [forepaw_L, back_middle]
+  - [forepaw_R, back_middle]
+  - [hindpaw_L, back_bottom]
+  - [hindpaw_R, back_bottom]
+
+anterior_bodyparts:
+  - ear_L
+  - ear_R
+  - forepaw_L
+  - forepaw_R
+  - back_top
+  - back_middle
+
+posterior_bodyparts:
+  - back_bottom
+  - tail_base
+  - tail_middle
+  - tail_tip
+  - hindpaw_L
+  - hindpaw_R
+
+model:
+  run_name: nst50_ds2_ld15_k1e06_seed1
+  model_name: nst50_ds2_ld15_k1e06_seed1_seed1
+  seed: 1
+  num_states: 50
+  latent_dim: 15
+  downsample_rate: 2
+  pca_fitting_num_frames: 80000
+  train_frac: 0.8
+  num_ar_iters: 30
+  num_full_iters: 100
+  kappa_ar: 1.0e6
+  decrease_kappa_factor: 10
+  kappa_full: 1.0e5
+  apply_num_iters: 100
+  fill_downsample_neighbors: true
+
+syllable_annotations:
+  0: Pause
+  1: Walk Right
+  2: Slow turn right
+  3: Slow turn right
+  4: Rub hands
+  5: High-step walk
+  6: Rear Up
+  8: Sniff Right
+  9: Sniff Down
+  11: Walk
+  12: Rear Up
+  13: Withdraw / turn back
+  15: Pivot right
+  16: High-step walk
+  17: Sniff Down
+  18: Rub hands
+  19: Grooming
+  21: Local sniff
+  22: Slow turn left
+  23: Explore
+  25: Pause
+  26: Run
+  29: Sniff Left
+  30: High-step walk
+  32: High-step walk
+  33: Sniff Around
+  34: High-step walk
+  35: Rear Up
+  36: Licking Back
+  37: Walk
+  38: Licking Back
+  39: Run-turn left
+  40: Walk
+  41: High-step walk left
+  46: High-step walk
+  47: Rear Down
+  48: Walk Left
+  49: High-step walk

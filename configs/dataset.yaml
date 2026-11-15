@@ -1,0 +1,40 @@
+# All paths are relative to $QDMOUSE4M_RELEASE_ROOT unless absolute.
+training_root_small: training_subsets/refonly_pose_k50_v1_valid3dfix_20260503
+training_root_large: training_subsets/refonly_pose_k50_v1_valid3dfix_large_20260503
+eval_in_root: evaluation_sets/refonly_pose_k50_in_session_v1_valid3dfix_20260503
+eval_out_root: evaluation_sets/refonly_pose_k50_outsession_v1_valid3dfix_20260503
+
+small_train_splits:
+  - train_0050
+  - train_0100
+  - train_0500
+  - train_1000
+  - train_5000
+  - train_10000
+
+large_lp3d_train_splits:
+  - train_15000_in_session_extra5k
+  - train_20000_in_session_extra10k
+  - train_15000_out_20251030
+  - train_15000_out_20251109_11
+  - train_20000_out_20251030_20251109_11
+
+eval_splits:
+  in:
+    root_key: eval_in_root
+    split: test_100000_stratified
+  in_fast:
+    root_key: eval_in_root
+    split: test_10000_in
+  out:
+    root_key: eval_out_root
+    split: test_100000_out
+  out_fast:
+    root_key: eval_out_root
+    split: test_10000_out
+
+views: [24383488, 24404505, 24404515, 24461855, 24514980, 24589937]
+tile_size_px: 280
+training_resize_px: 256
+label_confidence_threshold: 0.5
+

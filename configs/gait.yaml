@@ -1,0 +1,51 @@
+name: gait_release_v1
+description: >
+  Stride-level gait-analysis configuration for the public QDMouse4M release
+  trajectories. Reproduces the canonical paper-faithful stride detection and
+  the six release gait figures.
+
+dataset:
+  release_root_env: QDMOUSE4M_RELEASE_ROOT
+  fps: 40.724
+  # Trust the public release validity semantics: valid_3d=False means the 3D
+  # cell should not be used for quantitative analysis, even when coordinates
+  # are finite because of release-side interpolation.
+  mask_invalid_3d: true
+  # Also mask unrepaired speed-jump bouts when the release exposes this flag.
+  mask_invalid_jump_timepoint: true
+
+# Sheppard et al. 2022 paper-faithful stride detection. All thresholds are in
+# release units (mm, mm/s, s, frames).
+stride_detection:
+  animal_speed_min_mm_s: 50.0
+  stance_vel_hi_mm_s: 35.0
+  swing_vel_lo_mm_s: 120.0
+  min_stance_frames: 3
+  min_swing_frames: 2
+  min_stride_dur_s: 0.10
+  max_stride_dur_s: 1.20
+  max_nan_fraction: 0.10
+  drop_first_last_per_bout: true
+  savgol_window: 7
+  savgol_polyorder: 2
+
+straight_gait:
+  omega_threshold_deg_s: 40.0
+
+speed_bins_cm_s:
+  - [5.0, 7.5]
+  - [7.5, 10.0]
+  - [10.0, 12.5]
+  - [12.5, 15.0]
+  - [15.0, 17.5]
+  - [17.5, 20.0]
+  - [20.0, 22.5]
+  - [22.5, 25.0]
+  - [25.0, 30.0]
+  - [30.0, 40.0]
+
+figures:
+  min_strides_per_syllable_name: 20
+  max_kp_jump_mm: 80.0
+  example_window_seconds: 6.0
+  example_session: null   # null -> auto-pick the session with the cleanest locomotor signal

@@ -1,0 +1,34 @@
+seeds: [0, 1, 2]
+
+lp3d:
+  backbones:
+    dino: vits_dino
+    dinov2: vits_dinov2
+    dinov3: vits_dinov3
+  train:
+    image_size: 256
+    train_prob: 0.8
+    val_prob: 0.2
+    batch_size: 8
+    max_epochs: 160
+    min_epochs: 80
+    early_stop_patience: 8
+    check_val_every_n_epoch: 5
+    learning_rate: 5.0e-5
+    imgaug_3d: false
+    supervised_reprojection_loss: false
+  eval:
+    batch_size: 16
+    pred_confidence_threshold: 0.5
+
+sleap:
+  backbones: [unet, convnext, swint]
+  train:
+    image_size: 256
+    validation_fraction: 0.2
+    heatmap_sigma: 3.5
+    output_stride: 4
+  eval:
+    batch_size: 16
+    oks_stddev: 0.05
+    oks_scale: 280
